@@ -13,7 +13,7 @@ namespace BizTalkComponents.HttpUrlVariableMapper
 {
     [ComponentCategory(CategoryTypes.CATID_PipelineComponent)]
     [System.Runtime.InteropServices.Guid("3F94C0CB-681B-4FFA-B05F-8B8E69D1BA36")]
-    [ComponentCategory(CategoryTypes.CATID_Receiver)]
+    [ComponentCategory(CategoryTypes.CATID_Any)]
     public partial class HttpUrlVariableMapper : IComponent, IBaseComponent,
                                         IPersistPropertyBag, IComponentUI
     {
@@ -64,8 +64,8 @@ namespace BizTalkComponents.HttpUrlVariableMapper
 
             foreach (var variable in doc.Descendants("Variable"))
             {
-                var group = match.Groups[variable.Attribute("Name").ToString()];
-                pInMsg.Context.Write(variable.Attribute("PropertyName").ToString(),variable.Attribute("PropertyNamespace").ToString(),group.Value);
+                var group = match.Groups[variable.Attribute("Name").Value];
+                pInMsg.Context.Write(variable.Attribute("PropertyName").Value,variable.Attribute("PropertyNamespace").Value,group.Value);
             }
 
             return pInMsg;
